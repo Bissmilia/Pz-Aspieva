@@ -17,8 +17,21 @@ A = [10, 20, 30, 40, 50, 60, 70, 80, 90]  # Пример списка
 N = len(A)  # Размер списка
 
 # Ввод значений K и L
-K = int(input(f"Введите K (1 < K < {N - 1}): "))
-L = int(input(f"Введите L (K < L < {N}): "))
+K = input(f"Введите K (1 < K < {N - 1}): ")
+L = input(f"Введите L (K < L < {N}): ")
+
+while type(K) != int: # обработка исключений
+   try:
+    K = int(K)
+   except ValueError:
+    print("Неправильно ввели!")
+    K = input(f"Введите K (1 < K < {N - 1}): ")
+while type(L) != int: # обработка исключений
+   try:
+    L = int(L)
+   except ValueError:
+    print("Неправильно ввели!")
+    L = input(f"Введите L (K < L < {N}): ")
 
 # Печать исходного списка
 print("Исходный список:", A)

@@ -4,24 +4,24 @@
 #или номер позиции, в которой расположена первая ошибочная скобка, или, если
 #закрывающих скобок не хватает, число —1.
 
-def check_brackets(s):
-    stack = []
-    brackets = {')': '(', ']': '[', '}': '{'}
+def open_close(s):
+    a = {"(": 0, "{": 0, "[": 0}  # Счётчики открывающих скобок
+    b = {')': '(', '}': '{', ']': '['}
+    for i, j in enumerate(s):
+        if j in a:  # Если встретили открытую скобку
+            a[j] += 1
+        elif j in b:  # Если встретили закрытую скобку
+            count = b[j]
+            if a[count] == 0:
+                return i  # Возвращаем индекс этой скобки
+            a[count] -= 1
 
-    for index, char in enumerate(s):
-        if char in brackets.values():  # Если это открывающая скобка
-            stack.append((char, index + 1))
-        elif char in brackets.keys():  # Если это закрывающая скобка
-            if stack and stack[-1][0] == brackets[char]:  # Проверяем соответствие
-                stack.pop()
-            else:
-                return index + 1  # Возврат позиции первой ошибочной скобки
+    for key in a:
+      if a[key] > 0:
+        return -1
 
-    if stack:  # Если остались открывающие скобки
-        return -1  # Закрывающих скобок не хватает
-    return 0  # Скобки расставлены правильно
+    return 0
 
-# Ввод строки
-input_string = input("Введите строку: ")
-result = check_brackets(input_string)
-print(result)
+# Тестируем
+text = input('Введите какой-либо текст - ')
+print(open_close(text))
