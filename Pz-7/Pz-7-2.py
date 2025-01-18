@@ -7,13 +7,14 @@
 def open_close(s):
     a = {"(": 0, "{": 0, "[": 0}  # Счётчики открывающих скобок
     b = {')': '(', '}': '{', ']': '['}
+
     for i, j in enumerate(s):
         if j in a:  # Если встретили открытую скобку
             a[j] += 1
         elif j in b:  # Если встретили закрытую скобку
             count = b[j]
             if a[count] == 0:
-                return i  # Возвращаем индекс этой скобки
+                return i
             a[count] -= 1
 
     for key in a:
@@ -22,6 +23,5 @@ def open_close(s):
 
     return 0
 
-# Тестируем
 text = input('Введите какой-либо текст - ')
 print(open_close(text))
