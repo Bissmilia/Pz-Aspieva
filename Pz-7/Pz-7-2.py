@@ -4,24 +4,28 @@
 #или номер позиции, в которой расположена первая ошибочная скобка, или, если
 #закрывающих скобок не хватает, число —1.
 
-def open_close(s):
-    a = {"(": 0, "{": 0, "[": 0}  # Счётчики открывающих скобок
-    b = {')': '(', '}': '{', ']': '['}
+def skobki(s):
+    stack = []
 
-    for i, j in enumerate(s):
-        if j in a:  # Если встретили открытую скобку
-            a[j] += 1
-        elif j in b:  # Если встретили закрытую скобку
-            count = b[j]
-            if a[count] == 0:
-                return i
-            a[count] -= 1
+    for i, c in enumerate(s):
+        if c in '([{':
+            stack.append((c, i))
+        elif c in ')]}':
+            if not stack:
+                return i + 1
 
-    for key in a:
-      if a[key] > 0:
+            last_bracket, last_index = stack.pop()
+            if (c == ')' and last_bracket != '(') or \
+                    (c == ']' and last_bracket != '[') or \
+                    (c == '}' and last_bracket != '{'):
+                return i + 1
+
+    if stack:
         return -1
 
     return 0
 
-text = input('Введите какой-либо текст - ')
-print(open_close(text))
+
+input_string = input('Введите текст: ')
+result = skobki(input_string)
+print(result)
