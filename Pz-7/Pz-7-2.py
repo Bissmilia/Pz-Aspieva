@@ -26,6 +26,6 @@ def skobki(s):
     return 0
 
 
-input_string = input('Введите текст: ')
-result = skobki(input_string)
+text = input('Введите текст: ')
+result = skobki(text)
 print(result)
