@@ -6,11 +6,7 @@
 
 magnit = {'молоко', 'соль', 'сахар'}
 piterochka = {'мясо', 'молоко', 'сыр'}
-
 print("Товары из Магнита, отсутствующие в Пятерочке:", magnit - piterochka)
-
 print("Товары из Пятерочки, отсутствующие в Магните:", piterochka - magnit)
-
 print("Полный перечень всех товаров:", magnit | piterochka )
-
 print("Перечни товаров равны:", magnit == piterochka )
